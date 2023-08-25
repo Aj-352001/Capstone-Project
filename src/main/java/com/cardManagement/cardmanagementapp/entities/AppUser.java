@@ -7,17 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 	@Entity
 	public class AppUser {
 		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Integer userId;
 		private String userName;
 		private String mobileNumber;
 		private String panNumber;
-		private String aadhaNumber;
+		private String aadharNumber;
 		private LocalDate dateOfBirth;
 		private Double income;
 		private Double creditScore;
@@ -33,7 +36,7 @@ import javax.persistence.OneToMany;
 			super();
 		}
 
-		public AppUser(Integer userId, String userName, String mobileNumber, String panNumber, String aadhaNumber,
+		public AppUser(Integer userId, String userName, String mobileNumber, String panNumber, String aadharNumber,
 				LocalDate dateOfBirth, Double income, Double creditScore, String email, LocalDateTime lastUpdated,
 				List<Application> application, List<CreditCard> cards, UserRole role) {
 			super();
@@ -41,7 +44,7 @@ import javax.persistence.OneToMany;
 			this.userName = userName;
 			this.mobileNumber = mobileNumber;
 			this.panNumber = panNumber;
-			this.aadhaNumber = aadhaNumber;
+			this.aadharNumber = aadharNumber;
 			this.dateOfBirth = dateOfBirth;
 			this.income = income;
 			this.creditScore = creditScore;
@@ -85,11 +88,11 @@ import javax.persistence.OneToMany;
 		}
 
 		public String getAadhaNumber() {
-			return aadhaNumber;
+			return aadharNumber;
 		}
 
-		public void setAadhaNumber(String aadhaNumber) {
-			this.aadhaNumber = aadhaNumber;
+		public void setAadhaNumber(String aadharNumber) {
+			this.aadharNumber = aadharNumber;
 		}
 
 		public LocalDate getDateOfBirth() {
@@ -159,7 +162,7 @@ import javax.persistence.OneToMany;
 		@Override
 		public String toString() {
 			return "AppUser [userId=" + userId + ", userName=" + userName + ", mobileNumber=" + mobileNumber
-					+ ", panNumber=" + panNumber + ", aadhaNumber=" + aadhaNumber + ", dateOfBirth=" + dateOfBirth
+					+ ", panNumber=" + panNumber + ", aadharNumber=" + aadharNumber + ", dateOfBirth=" + dateOfBirth
 					+ ", income=" + income + ", creditScore=" + creditScore + ", email=" + email + ", lastUpdated="
 					+ lastUpdated + ", application=" + application + ", cards=" + cards + ", role=" + role + "]";
 		}
