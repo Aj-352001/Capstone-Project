@@ -5,9 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class CreditCard {
@@ -19,6 +23,7 @@ public class CreditCard {
 	private Double cardLimit;
 	private String cvv;
 	private Integer pin;
+	private Integer creditScore;
 	// just for display
 	private Double outstandingBalance;
 	private Double availableBalance;
@@ -35,7 +40,7 @@ public class CreditCard {
 	}
 
 	public CreditCard(Long creditCardId, String cardLender, LocalDate expiryDate, Double cardLimit, String cvv,
-			Integer pin, Double outstandingBalance, Double availableBalance, Double dueBalance,
+			Integer pin, Integer creditScore, Double outstandingBalance, Double availableBalance, Double dueBalance,
 			List<PaymentTransactions> transactions, BillingCycle billCycle, List<Statement> statements) {
 		super();
 		this.creditCardId = creditCardId;
@@ -44,6 +49,7 @@ public class CreditCard {
 		this.cardLimit = cardLimit;
 		this.cvv = cvv;
 		this.pin = pin;
+		this.creditScore = creditScore;
 		this.outstandingBalance = outstandingBalance;
 		this.availableBalance = availableBalance;
 		this.dueBalance = dueBalance;
@@ -100,6 +106,14 @@ public class CreditCard {
 		this.pin = pin;
 	}
 
+	public Integer getCreditScore() {
+		return creditScore;
+	}
+
+	public void setCreditScore(Integer creditScore) {
+		this.creditScore = creditScore;
+	}
+
 	public Double getOutstandingBalance() {
 		return outstandingBalance;
 	}
@@ -151,9 +165,12 @@ public class CreditCard {
 	@Override
 	public String toString() {
 		return "CreditCard [creditCardId=" + creditCardId + ", cardLender=" + cardLender + ", expiryDate=" + expiryDate
-				+ ", cardLimit=" + cardLimit + ", cvv=" + cvv + ", pin=" + pin + ", outstandingBalance="
-				+ outstandingBalance + ", availableBalance=" + availableBalance + ", dueBalance=" + dueBalance
-				+ ", transactions=" + transactions + ", billCycle=" + billCycle + ", statements=" + statements + "]";
+				+ ", cardLimit=" + cardLimit + ", cvv=" + cvv + ", pin=" + pin + ", creditScore=" + creditScore
+				+ ", outstandingBalance=" + outstandingBalance + ", availableBalance=" + availableBalance
+				+ ", dueBalance=" + dueBalance + ", transactions=" + transactions + ", billCycle=" + billCycle
+				+ ", statements=" + statements + "]";
 	}
+	
 
+	
 }
