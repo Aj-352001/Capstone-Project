@@ -11,15 +11,5 @@ import com.cardManagement.cardmanagementapp.dao.StatementRepository;
 @RestController
 public class StatementController {
 	
-	@Autowired
-	StatementRepository statementRepo;
-	@Autowired
-	BillPaymentRepository paymentRepo;
-	
-	@GetMapping("/statement/")
-	public String transaction(@RequestBody StatementRepository statement) {
-		return "Hello";
-	}
-	
 
 }

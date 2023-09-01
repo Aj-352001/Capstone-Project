@@ -1,11 +1,10 @@
 package com.cardManagement.cardmanagementapp.entities;
 
-import java.time.LocalDate;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,42 +16,52 @@ import javax.persistence.OneToMany;
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Integer userId;
+		@Column(nullable = false, length = 64)
+		private String password;
+		@Column(name = "name", nullable = false, length = 20)
 		private String userName;
 		private String mobileNumber;
-		private String panNumber;
-		private String aadharNumber;
-		private LocalDate dateOfBirth;
-		private Double income;
-		private Double creditScore;
+		@Column(nullable = false, unique = true, length = 45)
 		private String email;
 		private LocalDateTime lastUpdated;
 		@OneToMany
 		List<Application> application = new ArrayList<Application>();
 		@OneToMany
 		List<CreditCard> cards = new ArrayList<CreditCard>();
-		UserRole role;
-
+	    private Role userRole;
+	    
 		public AppUser() {
 			super();
 		}
 
-		public AppUser(Integer userId, String userName, String mobileNumber, String panNumber, String aadharNumber,
-				LocalDate dateOfBirth, Double income, Double creditScore, String email, LocalDateTime lastUpdated,
-				List<Application> application, List<CreditCard> cards, UserRole role) {
+		//for login
+		public AppUser(String userName, String email) {
+			super();
+			this.userName = userName;
+			this.email = email;
+		}
+		
+		
+		public AppUser(Integer userId, String password, String userName, String mobileNumber, String email,
+				LocalDateTime lastUpdated, List<Application> application, List<CreditCard> cards, Role userRole) {
 			super();
 			this.userId = userId;
+			this.password = password;
 			this.userName = userName;
 			this.mobileNumber = mobileNumber;
-			this.panNumber = panNumber;
-			this.aadharNumber = aadharNumber;
-			this.dateOfBirth = dateOfBirth;
-			this.income = income;
-			this.creditScore = creditScore;
 			this.email = email;
 			this.lastUpdated = lastUpdated;
 			this.application = application;
 			this.cards = cards;
-			this.role = role;
+			this.userRole = userRole;
+		}
+
+		public Role getUserRole() {
+			return userRole;
+		}
+
+		public void setUserRole(Role userRole) {
+			this.userRole = userRole;
 		}
 
 		public Integer getUserId() {
@@ -79,52 +88,20 @@ import javax.persistence.OneToMany;
 			this.mobileNumber = mobileNumber;
 		}
 
-		public String getPanNumber() {
-			return panNumber;
-		}
-
-		public void setPanNumber(String panNumber) {
-			this.panNumber = panNumber;
-		}
-
-		public String getAadhaNumber() {
-			return aadharNumber;
-		}
-
-		public void setAadhaNumber(String aadharNumber) {
-			this.aadharNumber = aadharNumber;
-		}
-
-		public LocalDate getDateOfBirth() {
-			return dateOfBirth;
-		}
-
-		public void setDateOfBirth(LocalDate dateOfBirth) {
-			this.dateOfBirth = dateOfBirth;
-		}
-
-		public Double getIncome() {
-			return income;
-		}
-
-		public void setIncome(Double income) {
-			this.income = income;
-		}
-
-		public Double getCreditScore() {
-			return creditScore;
-		}
-
-		public void setCreditScore(Double creditScore) {
-			this.creditScore = creditScore;
-		}
-
 		public String getEmail() {
 			return email;
 		}
 
 		public void setEmail(String email) {
 			this.email = email;
+		}
+
+		public String getPassword() {
+			return password;
+		}
+
+		public void setPassword(String password) {
+			this.password = password;
 		}
 
 		public LocalDateTime getLastUpdated() {
@@ -151,21 +128,13 @@ import javax.persistence.OneToMany;
 			this.cards = cards;
 		}
 
-		public UserRole getRole() {
-			return role;
-		}
-
-		public void setRole(UserRole role) {
-			this.role = role;
-		}
-
 		@Override
 		public String toString() {
-			return "AppUser [userId=" + userId + ", userName=" + userName + ", mobileNumber=" + mobileNumber
-					+ ", panNumber=" + panNumber + ", aadharNumber=" + aadharNumber + ", dateOfBirth=" + dateOfBirth
-					+ ", income=" + income + ", creditScore=" + creditScore + ", email=" + email + ", lastUpdated="
-					+ lastUpdated + ", application=" + application + ", cards=" + cards + ", role=" + role + "]";
+			return "AppUser [userId=" + userId + ", password=" + password + ", userName=" + userName + ", mobileNumber="
+					+ mobileNumber + ", email=" + email + ", lastUpdated=" + lastUpdated + ", application="
+					+ application + ", cards=" + cards + ", userRole=" + userRole + "]";
 		}
+
 
 	}
 
