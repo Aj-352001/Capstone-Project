@@ -13,19 +13,5 @@ import com.cardManagement.cardmanagementapp.dao.StatementRepository;
 @RestController
 public class CreditCardController {
 	
-	@Autowired
-	CreditCardRepository creditCardRepo;
-	@Autowired
-	PaymentTransactionsRepository transactionRepo;
-	@Autowired
-	BillingCycleRepository billCycleRepo;
-	@Autowired
-	StatementRepository statementRepo;
-	
-	@GetMapping("/transaction/")
-	public String transaction(@RequestBody CreditCardRepository creditcard) {
-		return "Hello";
-	}
-	
 
 }

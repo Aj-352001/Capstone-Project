@@ -10,13 +10,6 @@ import com.cardManagement.cardmanagementapp.dao.ApplicationRepository;
 @RestController
 public class ApplicationController {
 	
-	@Autowired
-	ApplicationRepository applicationRepo;
-	
-	@PostMapping("/application/")
-	public String Application(@RequestBody ApplicationRepository appUser) {
-		return "hello";
-	}
 	
 	
 
