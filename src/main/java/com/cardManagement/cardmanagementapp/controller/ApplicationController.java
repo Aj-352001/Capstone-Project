@@ -26,11 +26,6 @@ public class ApplicationController {
 	
 	@RequestMapping("/v1")
 
-	@GetMapping("/")
-	public String getGreet() {
-		return "welcome to your project";
-	}
-
 	// APPLICATION OF PARTICULAR USER/CUSTOMER
 	@GetMapping("/application/{id}")
 	public Application getApplicationById(@PathVariable("id") Integer id) throws ApplicationException {
