@@ -45,7 +45,6 @@ public class ApplicationController {
 		} catch (ApplicationException e) {
 			throw e;
 		}
-
 	}
 
 	// DISPLAYING ALL THE APPLICATIONS
