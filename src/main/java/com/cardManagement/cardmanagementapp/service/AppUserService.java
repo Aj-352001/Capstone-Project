@@ -7,6 +7,7 @@ import com.cardManagement.cardmanagementapp.dto.OTPDto;
 import com.cardManagement.cardmanagementapp.entities.AppUser;
 import com.cardManagement.cardmanagementapp.exceptions.AppUserException;
 import com.cardManagement.cardmanagementapp.exceptions.EmailVerificationException;
+
 public interface AppUserService {
 
 	AppUser saveUser(AppUserDto userDto) throws AppUserException;

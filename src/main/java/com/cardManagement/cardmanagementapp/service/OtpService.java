@@ -56,4 +56,5 @@ public class OtpService {
 	public void clearOTP(String key) {
 		otpCache.invalidate(key);
 	}
+	
 }

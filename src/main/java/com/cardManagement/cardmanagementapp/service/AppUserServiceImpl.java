@@ -16,6 +16,7 @@ import com.cardManagement.cardmanagementapp.entities.AppUser;
 import com.cardManagement.cardmanagementapp.entities.Role;
 import com.cardManagement.cardmanagementapp.exceptions.AppUserException;
 import com.cardManagement.cardmanagementapp.exceptions.EmailVerificationException;
+
 @Service
 public class AppUserServiceImpl implements AppUserService{
 	
@@ -44,9 +45,9 @@ public class AppUserServiceImpl implements AppUserService{
         String encodedPassword = passwordEncoder.encode(userDto.getPassword());
         user.setPassword(encodedPassword);
         user.setUserRole(Role.USER);
-        return this.userRepo.save(user);
-        
+        return this.userRepo.save(user);  
 	}
+
 	@Override
 	public Boolean validateUser(AppUserDto loginDetails) throws AppUserException {
 		Optional<AppUser> userOpt =this.userRepo.findByEmail(loginDetails.getEmail());
@@ -86,6 +87,7 @@ public class AppUserServiceImpl implements AppUserService{
 			throw new EmailVerificationException("Email cannot be sent");
 		}
 	}
+
 	public Boolean verifyOtpForEmailVerification(OTPDto otpDto) throws EmailVerificationException{
 		String clientEmail = otpDto.getEmail();
 		Integer clientOTP = otpDto.getOtp();
@@ -95,7 +97,6 @@ public class AppUserServiceImpl implements AppUserService{
 			throw new EmailVerificationException("You have entered wrong OTP.");
 		}
 		return true;
-		
 	}
 
 }

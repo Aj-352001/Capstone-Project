@@ -16,19 +16,21 @@ import com.cardManagement.cardmanagementapp.entities.AppUser;
 import com.cardManagement.cardmanagementapp.exceptions.AppUserException;
 import com.cardManagement.cardmanagementapp.exceptions.EmailVerificationException;
 import com.cardManagement.cardmanagementapp.service.AppUserService;
-//import com.cardManagement.cardmanagementapp.service.OtpService;
 import com.cardManagement.cardmanagementapp.dto.OTPDto;
+
 @RestController
 public class AppUserController {
 
 	@Autowired
 	private AppUserService userService;
 
+	//REGISTERING USER
 	@PostMapping("/user/")
 	public AppUser saveUser(@RequestBody AppUserDto userDto) throws AppUserException {
 		return this.userService.saveUser(userDto);
 	}
 
+	//LOGIN
 	@PostMapping("/login/")
 	public ResponseEntity<String> login(@RequestBody AppUserDto loginDetailsDto) throws AppUserException {
 		if (this.userService.validateUser(loginDetailsDto))
@@ -37,6 +39,7 @@ public class AppUserController {
 			return ResponseEntity.status(HttpStatus.OK).body("Login failed!");
 	}
 
+	//UPDATE USER PROFILE
 	@PutMapping("/user/update")
 	public AppUser updateUser(@RequestBody AppUser user) throws AppUserException {
 		try {
@@ -47,6 +50,7 @@ public class AppUserController {
 		}
 	}
 	
+	//GET ALL USERS
 	@GetMapping("/users/")
 	@ResponseStatus(HttpStatus.OK)
 	public List<AppUser> getAllUsers() {
@@ -54,12 +58,14 @@ public class AppUserController {
 		return listUsers;
 	}
 	
+	//GENERATE OTP 
 	@PostMapping("/user/otp/generate/")
 	@ResponseStatus(HttpStatus.OK)
 	public void generateOtp(@RequestBody AppUserDto userDto) throws EmailVerificationException{
 		this.userService.generateOtpForEmailVerification(userDto);
-		
 	}
+
+	//VERIFY OTP
 	@PostMapping("/user/otp/verify/")
     public ResponseEntity<String> verifyOtp(@RequestBody OTPDto otpDto) throws EmailVerificationException
     {

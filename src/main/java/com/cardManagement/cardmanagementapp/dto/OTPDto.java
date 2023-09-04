@@ -25,7 +25,5 @@ public class OTPDto {
 	public void setOtp(Integer otp) {
 		this.otp = otp;
 	}
-	
-	
 
 }

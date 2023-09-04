@@ -41,7 +41,6 @@ import javax.persistence.OneToMany;
 			this.email = email;
 		}
 		
-		
 		public AppUser(Integer userId, String password, String userName, String mobileNumber, String email,
 				LocalDateTime lastUpdated, List<Application> application, List<CreditCard> cards, Role userRole) {
 			super();
@@ -134,7 +133,6 @@ import javax.persistence.OneToMany;
 					+ mobileNumber + ", email=" + email + ", lastUpdated=" + lastUpdated + ", application="
 					+ application + ", cards=" + cards + ", userRole=" + userRole + "]";
 		}
-
 
 	}
 
