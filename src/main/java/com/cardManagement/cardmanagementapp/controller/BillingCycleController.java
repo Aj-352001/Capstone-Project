@@ -10,13 +10,6 @@ import com.cardManagement.cardmanagementapp.dao.BillingCycleRepository;
 @RestController
 public class BillingCycleController {
 	
-	@Autowired
-	BillingCycleRepository billingRepo;
-	
-	@GetMapping("/billingCycle/")
-	public String transaction(@RequestBody BillingCycleRepository billingCycle) {
-		return "Hello";
-	}
-	
+
 
 }
