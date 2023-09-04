@@ -15,8 +15,6 @@ public class Statement {
 	private Integer statementId;
 	private LocalDate generationDate;
 	private Double bill;
-	private String transactionDetails;
-	private TransactionCategory category;
 	@OneToMany
 	List<BillPayment> billPayments = new ArrayList<BillPayment>();
 
@@ -24,14 +22,17 @@ public class Statement {
 		super();
 	}
 
-	public Statement(Integer statementId, LocalDate generationDate, Double bill, String transactionDetails,
-			TransactionCategory category, List<BillPayment> billPayments) {
+	public Statement(Integer statementId, LocalDate generationDate) {
+		super();
+		this.statementId = statementId;
+		this.generationDate = generationDate;
+	}
+
+	public Statement(Integer statementId, LocalDate generationDate, Double bill, List<BillPayment> billPayments) {
 		super();
 		this.statementId = statementId;
 		this.generationDate = generationDate;
 		this.bill = bill;
-		this.transactionDetails = transactionDetails;
-		this.category = category;
 		this.billPayments = billPayments;
 	}
 
@@ -59,22 +60,6 @@ public class Statement {
 		this.bill = bill;
 	}
 
-	public String getTransactionDetails() {
-		return transactionDetails;
-	}
-
-	public void setTransactionDetails(String transactionDetails) {
-		this.transactionDetails = transactionDetails;
-	}
-
-	public TransactionCategory getCategory() {
-		return category;
-	}
-
-	public void setCategory(TransactionCategory category) {
-		this.category = category;
-	}
-
 	public List<BillPayment> getBillPayments() {
 		return billPayments;
 	}
@@ -86,8 +71,8 @@ public class Statement {
 	@Override
 	public String toString() {
 		return "Statement [statementId=" + statementId + ", generationDate=" + generationDate + ", bill=" + bill
-				+ ", transactionDetails=" + transactionDetails + ", category=" + category + ", billPayments="
-				+ billPayments + "]";
+				+ ", billPayments=" + billPayments + "]";
 	}
 
-	}
+}
+

@@ -10,7 +10,13 @@ import com.cardManagement.cardmanagementapp.dao.BillPaymentRepository;
 @RestController
 public class BillPaymentsController {
 	
+	@Autowired
+	BillPaymentRepository billPaymentRepo;
 	
+	@GetMapping("/billPayment/")
+	public String transaction(@RequestBody BillPaymentRepository billPayment) {
+		return "Hello";
+	}
 	
 
 }
