@@ -3,12 +3,15 @@ package com.cardManagement.cardmanagementapp.entities;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class BillingCycle {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer cycleID;
 	private LocalDate startDate;
 	private LocalDate endDate;

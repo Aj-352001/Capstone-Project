@@ -12,7 +12,7 @@ public class PaymentTransactions {
 	private Integer transactionID;
 	private LocalDate timeStamp;
 	private String purchaseInformation;
-	private Double amount;
+	private Double amount=0.0;
 	private Integer branchCode;
 	private Boolean status;
 	private Double credit;
