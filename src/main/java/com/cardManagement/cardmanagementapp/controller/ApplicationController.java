@@ -1,6 +1,7 @@
 package com.cardManagement.cardmanagementapp.controller;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.cardManagement.cardmanagementapp.dto.ApplicationDto;
 import com.cardManagement.cardmanagementapp.entities.Application;
 import com.cardManagement.cardmanagementapp.entities.CardApprovalStatus;
 import com.cardManagement.cardmanagementapp.exceptions.ApplicationException;
@@ -23,12 +26,12 @@ public class ApplicationController {
 
 	@Autowired
 	private ApplicationService applicationService;
-	
+
 	@RequestMapping("/v1")
 
 	// APPLICATION OF PARTICULAR USER/CUSTOMER
 	@GetMapping("/application/{id}")
-	public Application getApplicationById(@PathVariable("id") Integer id) throws ApplicationException {
+	public ApplicationDto getApplicationById(@PathVariable("id") Integer id) throws ApplicationException {
 		try {
 			return this.applicationService.displayApplicationById(id);
 		} catch (ApplicationException e) {
@@ -38,18 +41,19 @@ public class ApplicationController {
 
 	// ADDING AN APPLICATION
 	@PostMapping("/application/")
-	public String addApplication(@RequestBody Application newApplication) throws ApplicationException {
+	public String addApplication(@RequestBody ApplicationDto newApplication) throws ApplicationException {
 		try {
 			this.applicationService.createApplication(newApplication);
 			return "application successful";
 		} catch (ApplicationException e) {
 			throw e;
 		}
+
 	}
 
 	// DISPLAYING ALL THE APPLICATIONS
 	@GetMapping("/applications/")
-	public Collection<Application> displayAllApplication(@RequestBody Application newApplication)
+	public List<ApplicationDto> displayAllApplication()
 			throws ApplicationException {
 		try {
 			return this.applicationService.displayAllApplications();
@@ -61,7 +65,7 @@ public class ApplicationController {
 
 	// UPDATING THE STATUS OF THE APPLICATION BY ADMIN
 	@PatchMapping("/application/{id}/{status}")
-	public Application updateApplicationStatus(@PathVariable Integer id, @PathVariable CardApprovalStatus status)
+	public ApplicationDto updateApplicationStatus(@PathVariable Integer id, @PathVariable CardApprovalStatus status)
 			throws Exception {
 		try {
 			return this.applicationService.updateApplicationStatus(id, status);
@@ -72,8 +76,7 @@ public class ApplicationController {
 
 	// DELETING THE APPLICATION BY USER
 	@DeleteMapping("/delapplication/{id}")
-	public String deleteApplication(@PathVariable Integer id)
-			throws ApplicationException {
+	public String deleteApplication(@PathVariable Integer id) throws ApplicationException {
 		try {
 			return this.applicationService.deleteApplicationById(id);
 		} catch (ApplicationException e) {
