@@ -58,7 +58,7 @@ public class AppUserServiceImpl implements AppUserService{
 		if(!email.equals(loginDetails.getEmail())) {
 			throw new AppUserException("You have entered wrong email.");
 		}
-		if(passwordEncoder.matches(loginDetails.getPassword(),password)) {
+		if(!passwordEncoder.matches(loginDetails.getPassword(),password)) {
 			throw new AppUserException("You have entered wrong password.");
 		}
 		return true;
