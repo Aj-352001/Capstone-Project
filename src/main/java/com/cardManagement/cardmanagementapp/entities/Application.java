@@ -38,8 +38,45 @@ public class Application {
 		this.status = status;
 		this.cardType = cardType;
 	}
+	public Integer getApplicationId() {
+		return applicationId;
+	}
 
+	public void setApplicationId(Integer applicationId) {
+		this.applicationId = applicationId;
+	}
 
+	public String getPanNumber() {
+		return panNumber;
+	}
+
+	public void setPanNumber(String panNumber) {
+		this.panNumber = panNumber;
+	}
+
+	public String getAadharNumber() {
+		return aadharNumber;
+	}
+
+	public void setAadharNumber(String aadharNumber) {
+		this.aadharNumber = aadharNumber;
+	}
+
+	public LocalDate getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(LocalDate dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public Double getIncome() {
+		return income;
+	}
+
+	public void setIncome(Double income) {
+		this.income = income;
+	}
 
 	public CardApprovalStatus getStatus() {
 		return status;
